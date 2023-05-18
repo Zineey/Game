@@ -1,0 +1,4 @@
+Remaining Tasks:
+1. Fix the Random placement of Player where player must not spawn in walls
+2. Fix the Random placement of Goal where goal must not spawn in walls too
+3. Algorithm Implementation (A* Algorithm)

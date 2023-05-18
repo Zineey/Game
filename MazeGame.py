@@ -14,6 +14,9 @@ BROWN = (139, 69, 19)
 
 pygame.init()
 running = True
+show_path = False
+path = []
+
 clock = pygame.time.Clock()
 
 WIDTH = 750
@@ -53,6 +56,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_t:
+                show_path = True
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] and player_pos[1] > 0 and maze[player_pos[1] - 1][player_pos[0]] != 1:
@@ -64,7 +70,11 @@ while running:
     elif keys[pygame.K_d] and player_pos[0] < GRID_WIDTH - 1 and maze[player_pos[1]][player_pos[0] + 1] != 1:
         player_pos = (player_pos[0] + 1, player_pos[1])
 
+
     screen.fill(BLACK)
+
+
+
 
     for y in range(GRID_HEIGHT):
         for x in range(GRID_WIDTH):
