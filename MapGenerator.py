@@ -37,7 +37,7 @@ def generate_maze(rows, cols):
         else:
             # Dead end reached, backtrack
             stack.pop()
-
+    
     # Set goal state as 2
     maze[rows - 2][cols - 2] = 2
 
