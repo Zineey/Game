@@ -15,7 +15,7 @@ BROWN = (139, 69, 19)
 pygame.init()
 running = True
 show_path = False
-path = []
+# path = []
 
 clock = pygame.time.Clock()
 
