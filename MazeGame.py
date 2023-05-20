@@ -31,8 +31,8 @@ player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
 goal = pygame.image.load('assets/goal.png')
 goal = pygame.transform.scale(goal, (CELL_SIZE, CELL_SIZE))
 
-# wall = pygame.image.load('assets/wall.png')
-# wall = pygame.transform.scale(wall, (CELL_SIZE, CELL_SIZE))
+wall = pygame.image.load('assets/wall.webp')
+wall = pygame.transform.scale(wall, (CELL_SIZE, CELL_SIZE))
 
 # Generates random maze
 maze = mapGenerator(27, 27)
@@ -112,8 +112,8 @@ while running:
     for y in range(GRID_HEIGHT):
         for x in range(GRID_WIDTH):
             if maze[y][x] == 1:
-                # screen.blit(wall, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-                pygame.draw.rect(screen, GREEN, (x * CELL_SIZE , y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                screen.blit(wall, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                # pygame.draw.rect(screen, GREEN, (x * CELL_SIZE , y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
     
     screen.blit(player, (player_pos[0] * CELL_SIZE, player_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
     screen.blit(goal, (goal_pos[0] * CELL_SIZE, goal_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
@@ -124,11 +124,20 @@ while running:
             start = (path[i][0] * CELL_SIZE + CELL_SIZE // 2, path[i][1] * CELL_SIZE + CELL_SIZE // 2)
            
             end = (path[i + 1][0] * CELL_SIZE + CELL_SIZE // 2, path[i + 1][1] * CELL_SIZE + CELL_SIZE // 2)
-            pygame.draw.line(screen, BROWN, start, end, 3)
+            pygame.draw.line(screen, GREEN, start, end, 3)
 
     if player_pos == goal_pos:
         # messagebox.showinfo("You Win!", "*BOO!*")
-        messagebox.askyesno("Play Again?", "Do you want to play again?")
-        running = False
+        if messagebox.askyesno("Play Again?", "Do you want to play again?") == False:
+            messagebox.showinfo("Thanks for Playing!", "Thanks for playing!")
+            running = False
+        else:
+            maze = mapGenerator(27, 27)
+            GRID_WIDTH = len(maze[0])
+            GRID_HEIGHT = len(maze)
+            player_pos = randomPos(maze)
+            goal_pos = randomPos(maze)
+            show_Solution = False
+            path = []
 
     clock.tick(30)
