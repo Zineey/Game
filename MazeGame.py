@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 WIDTH = 750
 HEIGHT = 750
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Love is Colorblind")
+pygame.display.set_caption("Not a Horror Game!")
 
 CELL_SIZE = 28
 GRID_WIDTH = WIDTH//CELL_SIZE
@@ -78,7 +78,7 @@ while running:
     screen.blit(goal, (goal_pos[0] * CELL_SIZE, goal_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
 
     if player_pos == goal_pos:
-        messagebox.showinfo("You Win!", "You found the *Ultimate Green Flag*")
+        messagebox.showinfo("You Win!", "*BOO!*")
         running = False
 
     clock.tick(10)
