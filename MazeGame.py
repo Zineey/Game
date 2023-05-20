@@ -117,7 +117,6 @@ while running:
         for x in range(GRID_WIDTH):
             if maze[y][x] == 1:
                 screen.blit(wall, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-                # pygame.draw.rect(screen, GREEN, (x * CELL_SIZE , y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
     
     screen.blit(player, (player_pos[0] * CELL_SIZE, player_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
     screen.blit(goal, (goal_pos[0] * CELL_SIZE, goal_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
