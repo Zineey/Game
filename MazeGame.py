@@ -31,6 +31,9 @@ player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
 goal = pygame.image.load('assets/goal.png')
 goal = pygame.transform.scale(goal, (CELL_SIZE, CELL_SIZE))
 
+# wall = pygame.image.load('assets/wall.png')
+# wall = pygame.transform.scale(wall, (CELL_SIZE, CELL_SIZE))
+
 # Generates random maze
 maze = mapGenerator(27, 27)
 GRID_WIDTH = len(maze[0])
@@ -109,6 +112,7 @@ while running:
     for y in range(GRID_HEIGHT):
         for x in range(GRID_WIDTH):
             if maze[y][x] == 1:
+                # screen.blit(wall, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
                 pygame.draw.rect(screen, GREEN, (x * CELL_SIZE , y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
     
     screen.blit(player, (player_pos[0] * CELL_SIZE, player_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
