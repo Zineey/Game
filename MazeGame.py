@@ -25,6 +25,9 @@ CELL_SIZE = 28
 GRID_WIDTH = WIDTH//CELL_SIZE
 GRID_HEIGHT = HEIGHT//CELL_SIZE
 
+
+# bg = pygame.image.load('assets/bg.png')
+
 player = pygame.image.load('assets/player.png')
 player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
 
@@ -108,6 +111,7 @@ while running:
 
 
     screen.fill(BLACK)
+    # screen.blit(bg, (0, 0))
 
     for y in range(GRID_HEIGHT):
         for x in range(GRID_WIDTH):
@@ -127,7 +131,6 @@ while running:
             pygame.draw.line(screen, GREEN, start, end, 3)
 
     if player_pos == goal_pos:
-        # messagebox.showinfo("You Win!", "*BOO!*")
         if messagebox.askyesno("Play Again?", "Do you want to play again?") == False:
             messagebox.showinfo("Thanks for Playing!", "Thanks for playing!")
             running = False
