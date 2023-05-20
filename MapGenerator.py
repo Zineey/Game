@@ -1,5 +1,5 @@
 import random
-def generate_maze(rows, cols):
+def mapGenerator(rows, cols):
     # Initialize maze matrix with all walls
     maze = [[1] * cols for _ in range(rows)]
 
@@ -37,8 +37,5 @@ def generate_maze(rows, cols):
         else:
             # Dead end reached, backtrack
             stack.pop()
-    
-    # Set goal state as 2
-    maze[rows - 2][cols - 2] = 2
 
     return maze
