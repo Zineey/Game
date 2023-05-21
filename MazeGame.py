@@ -103,9 +103,6 @@ while running:
                     sys.exit()
                 else:
                     pass
-            if event.key == pygame.K_SPACE:
-                player_pos = randomPos(maze)
-
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] or keys[pygame.K_UP]:
