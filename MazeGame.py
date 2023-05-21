@@ -31,7 +31,7 @@ GRID_HEIGHT = HEIGHT//CELL_SIZE
 player = pygame.image.load('assets/player.png')
 player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
 
-goal = pygame.image.load('assets/goal.png')
+goal = pygame.image.load('assets/goal.gif')
 goal = pygame.transform.scale(goal, (CELL_SIZE, CELL_SIZE))
 
 wall = pygame.image.load('assets/wall.webp')
@@ -90,6 +90,17 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 show_Solution = True
+            if event.key == pygame.K_r:
+                if messagebox.askyesno("Restart", "Are you sure you want to restart? This will generate new Map") == True: 
+                    maze = mapGenerator(27, 27)
+                    GRID_WIDTH = len(maze[0])
+                    GRID_HEIGHT = len(maze)
+                    player_pos = randomPos(maze)
+                    goal_pos = randomPos(maze)
+                    show_Solution = False
+                    path = []
+                else:
+                    pass
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] or keys[pygame.K_UP]:
@@ -108,6 +119,7 @@ while running:
     
     if show_Solution:
         path = aStar(player_pos, goal_pos)
+        show_Solution = False
 
 
     screen.fill(BLACK)
@@ -142,4 +154,4 @@ while running:
             show_Solution = False
             path = []
 
-    clock.tick(30)
+    clock.tick(15)
