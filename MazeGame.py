@@ -5,8 +5,6 @@ from RandomPos import randomPos
 from tkinter import messagebox
 from heapq import heappush, heappop
 
-# Define colors
-# WHITE = (255, 255, 255)
 BROWN = (139, 69, 19)
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -19,14 +17,12 @@ clock = pygame.time.Clock()
 WIDTH = 750
 HEIGHT = 750
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Not a Horror Game!")
+pygame.display.set_caption("Mini Maze Game")
 
 CELL_SIZE = 28
 GRID_WIDTH = WIDTH//CELL_SIZE
 GRID_HEIGHT = HEIGHT//CELL_SIZE
 
-
-# bg = pygame.image.load('assets/bg.png')
 
 player = pygame.image.load('assets/player.png')
 player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
@@ -101,6 +97,15 @@ while running:
                     path = []
                 else:
                     pass
+            if event.key == pygame.K_ESCAPE:
+                if messagebox.askyesno("Quit", "Are you sure you want to quit?") == True:
+                    running = False
+                    sys.exit()
+                else:
+                    pass
+            if event.key == pygame.K_SPACE:
+                player_pos = randomPos(maze)
+
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] or keys[pygame.K_UP]:
@@ -121,16 +126,14 @@ while running:
         path = aStar(player_pos, goal_pos)
         show_Solution = False
 
-
     screen.fill(BLACK)
-    # screen.blit(bg, (0, 0))
 
     for y in range(GRID_HEIGHT):
         for x in range(GRID_WIDTH):
             if maze[y][x] == 1:
                 screen.blit(wall, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-    
-    screen.blit(player, (player_pos[0] * CELL_SIZE, player_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+
+    screen.blit(player, (player_pos[0] * CELL_SIZE, player_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))    
     screen.blit(goal, (goal_pos[0] * CELL_SIZE, goal_pos[1] * CELL_SIZE, CELL_SIZE, CELL_SIZE))
 
     if path:
@@ -139,10 +142,11 @@ while running:
             start = (path[i][0] * CELL_SIZE + CELL_SIZE // 2, path[i][1] * CELL_SIZE + CELL_SIZE // 2)
            
             end = (path[i + 1][0] * CELL_SIZE + CELL_SIZE // 2, path[i + 1][1] * CELL_SIZE + CELL_SIZE // 2)
-            pygame.draw.line(screen, GREEN, start, end, 3)
+            pygame.draw.line(screen, GREEN, start, end, 1)
 
+      
     if player_pos == goal_pos:
-        if messagebox.askyesno("Play Again?", "Do you want to play again?") == False:
+        if messagebox.askyesno("You Win!", "Do you want to play again?") == False:
             messagebox.showinfo("Thanks for Playing!", "Thanks for playing!")
             running = False
         else:
@@ -154,4 +158,4 @@ while running:
             show_Solution = False
             path = []
 
-    clock.tick(15)
+    clock.tick(10)

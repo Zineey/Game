@@ -1,4 +1,5 @@
 import random
+
 def mapGenerator(rows, cols):
     # Initialize maze matrix with all walls
     maze = [[1] * cols for _ in range(rows)]
