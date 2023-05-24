@@ -27,13 +27,13 @@ GRID_HEIGHT = HEIGHT//CELL_SIZE
 player = pygame.image.load('assets/player.png')
 player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
 
-goal = pygame.image.load('assets/goal.gif')
+goal = pygame.image.load('assets/goal.png')
 goal = pygame.transform.scale(goal, (CELL_SIZE, CELL_SIZE))
 
-wall = pygame.image.load('assets/wall.webp')
+wall = pygame.image.load('assets/wall.png')
 wall = pygame.transform.scale(wall, (CELL_SIZE, CELL_SIZE))
 
-# Generates random maze
+# Generates random maze 
 maze = mapGenerator(27, 27)
 GRID_WIDTH = len(maze[0])
 GRID_HEIGHT = len(maze)
@@ -103,6 +103,8 @@ while running:
                     sys.exit()
                 else:
                     pass
+            if event.key == pygame.K_SPACE:
+                player_pos = randomPos(maze)
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] or keys[pygame.K_UP]:
