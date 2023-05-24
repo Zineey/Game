@@ -17,7 +17,7 @@ clock = pygame.time.Clock()
 WIDTH = 750
 HEIGHT = 750
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Mini Maze Game")
+pygame.display.set_caption("Dungeon Raider")
 
 CELL_SIZE = 28
 GRID_WIDTH = WIDTH//CELL_SIZE
@@ -98,14 +98,13 @@ while running:
                 else:
                     pass
             if event.key == pygame.K_ESCAPE:
-                if messagebox.askyesno("Quit", "Are you sure you want to quit?") == True:
+                if messagebox.askyesno("Quit", "Are you sure you want to quit? \n You will return to Home Screen") == True:
                     running = False
                     sys.exit()
                 else:
                     pass
-            if event.key == pygame.K_SPACE:
-                player_pos = randomPos(maze)
 
+    # Movements
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w] or keys[pygame.K_UP]:
         if player_pos[1] > 0 and maze[player_pos[1] - 1][player_pos[0]] != 1:
@@ -123,7 +122,7 @@ while running:
     
     if show_Solution:
         path = aStar(player_pos, goal_pos)
-        show_Solution = False
+        # show_Solution = False
 
     screen.fill(BLACK)
 
