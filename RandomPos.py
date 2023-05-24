@@ -1,5 +1,5 @@
 import random
-# function for generating random position of player and goal state in the maze
+# function for generating random position ng player and goal state in the maze without overlapping sa wall 
 def randomPos(maze):
     height = len(maze)
     width = len(maze[0])
