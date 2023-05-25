@@ -5,14 +5,15 @@ from RandomPos import randomPos
 from tkinter import messagebox
 from heapq import heappush, heappop
 
-BROWN = (139, 69, 19)
-BLACK = (0, 0, 0)
+BROWN = (182, 143, 64)
+BLACK = (30,30,30)
 GREEN = (0, 255, 0)
 
 pygame.init() 
 running = True
 clock = pygame.time.Clock()
-
+pygame_icon = pygame.image.load('assets/player.png')
+pygame.display.set_icon(pygame_icon)
 
 WIDTH = 750
 HEIGHT = 750
@@ -25,13 +26,13 @@ GRID_HEIGHT = HEIGHT//CELL_SIZE
 
 
 player = pygame.image.load('assets/player.png')
-player = pygame.transform.scale(player, (CELL_SIZE, CELL_SIZE))
+player = pygame.transform.scale(player, (30, 30))
 
 goal = pygame.image.load('assets/goal.png')
-goal = pygame.transform.scale(goal, (CELL_SIZE, CELL_SIZE))
+goal = pygame.transform.scale(goal, (30, 30))
 
 wall = pygame.image.load('assets/wall.png')
-wall = pygame.transform.scale(wall, (CELL_SIZE, CELL_SIZE))
+wall = pygame.transform.scale(wall, (30, 30))
 
 # Generates random maze 
 maze = mapGenerator(27, 27)
@@ -138,9 +139,8 @@ while running:
         show_Solution = True
         for i in range(len(path) - 1):
             start = (path[i][0] * CELL_SIZE + CELL_SIZE // 2, path[i][1] * CELL_SIZE + CELL_SIZE // 2)
-           
             end = (path[i + 1][0] * CELL_SIZE + CELL_SIZE // 2, path[i + 1][1] * CELL_SIZE + CELL_SIZE // 2)
-            pygame.draw.line(screen, GREEN, start, end, 1)
+            pygame.draw.line(screen, BROWN, start, end, 1)
 
       
     if player_pos == goal_pos:

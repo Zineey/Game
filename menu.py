@@ -4,12 +4,15 @@ import sys
 import os
 
 pygame.init()
+pygame.display.set_caption("Dungeon Raider")
+pygame_icon = pygame.image.load('assets/player.png')
+pygame.display.set_icon(pygame_icon)
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Main Menu
-BG = pygame.image.load("assets/bg.jpg")
-
+BG = pygame.image.load("assets/bg.png")
+BG = pygame.transform.scale(BG, (750, 750))
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.ttf", size)
 
@@ -53,7 +56,7 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(40).render("DUNGEON RAIDER", True, "#b68f40")
+        MENU_TEXT = get_font(40).render("DUNGEON RAIDER", True, "#ffffff")
         MENU_RECT = MENU_TEXT.get_rect(center=(400, 100))
 
         PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(400, 370), 

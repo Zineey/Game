@@ -40,9 +40,11 @@ def mapGenerator(rows, cols):
             stack.pop()
 
         # Convert some walls to paths
-        if random.random() < 0.3:
+        if random.random() < 0.2:
             random_row = random.randint(1, rows-2)
             random_col = random.randint(1, cols-2)
             maze[random_row][random_col] = 0
 
+
     return maze
+
